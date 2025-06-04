@@ -445,7 +445,8 @@
         </div>
     </div>
 
-    <button type="button" id="enviar">Enviar via WhatsApp</button>
+    <button type="button" id="enviar" onclick="enviarFormulario()">Enviar Formulário</button>
+
     <p style="margin-top: 20px; color: #555;">
         *Os anexos devem ser enviados separadamente pelo WhatsApp: 
         Exame Admissional, CTPS, RG, CPF, Comprovante de Endereço, Certidão de Nascimento de dependentes menores de 7 anos.
@@ -625,6 +626,33 @@
         const url = `https://wa.me/${numeroWhatsApp}/?text=${encodeURIComponent(mensagem)}`;
         window.open(url, '_blank');
     });
+</script>
+<script>
+async function enviarFormulario() {
+  const form = document.getElementById('formulario'); // ID do seu <form>
+  const formData = new FormData(form);
+  const dados = {};
+
+  formData.forEach((value, key) => {
+    dados[key] = value;
+  });
+
+  const response = await fetch('https://contador-assessoria.github.io/Admissao/', {  // <-- Coloque seu Web App URL aqui
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dados)
+  });
+
+  if (response.ok) {
+    alert('✅ Formulário enviado com sucesso!');
+    form.reset();  // Limpa o formulário
+  } else {
+    alert('❌ Erro ao enviar o formulário. Tente novamente.');
+  }
+}
 </script>
 
 </body>
