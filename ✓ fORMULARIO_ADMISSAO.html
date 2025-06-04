@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Admissão de Empregado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 1.5em;
+        }
+        form {
+            max-width: 100%;
+            margin: auto;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+            padding: 5px;
+        }
+        label {
+            color: #555;
+            font-weight: bold;
+            display: block;
+            font-size: 1em;
+        }
+        label.required::after {
+            content: '*';
+            color: red;
+            margin-left: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+        #enviar {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            margin-top: 20px;
+            width: 50%;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        #enviar:hover {
+            background-color: #0069d9;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+            .form-row {
+                flex-direction: column;
+            }
+            #enviar {
+                font-size: 1em;
+                padding: 12px;
+            }
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        table th {
+            background-color: #f9f9f9;
+        }
+        .section-title {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Formulário de Admissão de Empregado</h2>
+
+<form id="formulario">
+    <div class="section-title">Dados da Empresa</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="empresa_nome" class="required">Razão Social:</label>
+            <input type="text" id="empresa_nome" name="empresa_nome" placeholder="Ex: JKG Rações e Pet Shop Ltda" required>
+        </div>
+        <div class="form-group">
+            <label for="empresa_cnpj" class="required">CNPJ:</label>
+            <input type="text" id="empresa_cnpj" name="empresa_cnpj" placeholder="00.000.000/0000-00" required>
+        </div>
+        <div class="form-group">
+            <label for="empresa_endereco">Endereço Completo:</label>
+            <input type="text" id="empresa_endereco" name="empresa_endereco" placeholder="Rua, Nº, Bairro, Cidade - UF, CEP">
+        </div>
+    </div>
+
+    <div class="section-title">Dados Pessoais</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="nome" class="required">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Nome Completo" required>
+        </div>
+        <div class="form-group">
+            <label for="cpf" class="required">CPF:</label>
+            <input type="text" id="cpf" name="cpf" placeholder="Digite o CPF" required>
+            <div id="cpf-error" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="rg">RG:</label>
+            <input type="text" id="rg" name="rg" placeholder="Número do RG">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="data_nascimento" class="required">Data de Nascimento:</label>
+            <input type="date" id="data_nascimento" name="data_nascimento" required>
+        </div>
+        <div class="form-group">
+            <label for="estado_civil">Estado Civil:</label>
+            <select id="estado_civil" name="estado_civil">
+                <option value="">Selecione</option>
+                <option value="Solteiro">Solteiro</option>
+                <option value="Casado">Casado</option>
+                <option value="União Estável">União Estável</option>
+                <option value="Divorciado">Divorciado</option>
+                <option value="Viúvo">Viúvo</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="filhos_menores">Filhos Menores (idade):</label>
+            <input type="text" id="filhos_menores" name="filhos_menores" placeholder="Ex: 5, 7">
+        </div>
+    </div>
+
+    <div class="section-title">Carteira de Trabalho (CTPS)</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="ctps_numero" class="required">Número da CTPS:</label>
+            <input type="text" id="ctps_numero" name="ctps_numero" placeholder="Número da CTPS" required>
+        </div>
+        <div class="form-group">
+            <label for="ctps_serie">Série:</label>
+            <input type="text" id="ctps_serie" name="ctps_serie" placeholder="Série da CTPS">
+        </div>
+        <div class="form-group">
+            <label for="ctps_uf">UF da CTPS:</label>
+            <select id="ctps_uf" name="ctps_uf">
+                <option value="">Selecione</option>
+                <option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option>
+                <option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option>
+                <option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option>
+                <option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option>
+                <option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option>
+                <option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option>
+                <option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option>
+                <option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option>
+                <option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="section-title">Dados Contratuais</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="data_admissao" class="required">Data de Admissão:</label>
+            <input type="date" id="data_admissao" name="data_admissao" required>
+        </div>
+        <div class="form-group">
+            <label for="tipo_contrato" class="required">Tipo de Contrato:</label>
+            <select id="tipo_contrato" name="tipo_contrato" required>
+                <option value="">Selecione</option>
+                <option value="Experiência">Experiência</option>
+                <option value="Prazo Determinado">Prazo Determinado</option>
+                <option value="Prazo Indeterminado">Prazo Indeterminado</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cargo" class="required">Cargo/Função:</label>
+            <input type="text" id="cargo" name="cargo" placeholder="Ex: Esteticista de Animais" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="salario" class="required">Salário:</label>
+            <input type="number" id="salario" name="salario" placeholder="Digite o Salário" step="0.01" min="0" required>
+        </div>
+        <div class="form-group">
+            <label for="data_termino">Data de Término (se aplicável):</label>
+            <input type="date" id="data_termino" name="data_termino">
+        </div>
+        <div class="form-group">
+            <label for="prorrogacao">Dias de Prorrogação:</label>
+            <input type="number" id="prorrogacao" name="prorrogacao" placeholder="Ex: 45" min="0">
+        </div>
+    </div>
+
+    <div class="section-title">Horário Semanal</div>
+    <table>
+        <tr>
+            <th>Dia</th>
+            <th>Entrada</th>
+            <th>Início Intervalo</th>
+            <th>Fim Intervalo</th>
+            <th>Saída</th>
+        </tr>
+        <tr>
+            <td>Segunda-feira</td>
+            <td><input type="time" name="horario[segunda][entrada]"></td>
+            <td><input type="time" name="horario[segunda][inicio_intervalo]"></td>
+            <td><input type="time" name="horario[segunda][fim_intervalo]"></td>
+            <td><input type="time" name="horario[segunda][saida]"></td>
+        </tr>
+        <tr>
+            <td>Terça-feira</td>
+            <td><input type="time" name="horario[terca][entrada]"></td>
+            <td><input type="time" name="horario[terca][inicio_intervalo]"></td>
+            <td><input type="time" name="horario[terca][fim_intervalo]"></td>
+            <td><input type="time" name="horario[terca][saida]"></td>
+        </tr>
+        <tr>
+            <td>Quarta-feira</td>
+            <td><input type="time" name="horario[quarta][entrada]"></td>
+            <td><input type="time" name="horario[quarta][inicio_intervalo]"></td>
+            <td><input type="time" name="horario[quarta][fim_intervalo]"></td>
+            <td><input type="time" name="horario[quarta][saida]"></td>
+        </tr>
+        <tr>
+            <td>Quinta-feira</td>
+            <td><input type="time" name="horario[quinta][entrada]"></td>
+            <td><input type="time" name="horario[quinta][inicio_intervalo]"></td>
+            <td><input type="time" name="horario[quinta][fim_intervalo]"></td>
+            <td><input type="time" name="horario[quinta][saida]"></td>
+        </tr>
+        <tr>
+            <td>Sexta-feira</td>
+            <td><input type="time" name="horario[sexta][entrada]"></td>
+            <td><input type="time" name="horario[sexta][inicio_intervalo]"></td>
+            <td><input type="time" name="horario[sexta][fim_intervalo]"></td>
+            <td><input type="time" name="horario[sexta][saida]"></td>
+        </tr>
+        <tr>
+            <td>Sábado</td>
+            <td><input type="time" name="horario[sabado][entrada]"></td>
+            <td><input type="time" name="horario[sabado][inicio_intervalo]"></td>
+            <td><input type="time" name="horario[sabado][fim_intervalo]"></td>
+            <td><input type="time" name="horario[sabado][saida]"></td>
+        </tr>
+        <tr>
+            <td>Domingo</td>
+            <td><input type="time" name="horario[domingo][entrada]"></td>
+            <td><input type="time" name="horario[domingo][inicio_intervalo]"></td>
+            <td><input type="time" name="horario[domingo][fim_intervalo]"></td>
+            <td><input type="time" name="horario[domingo][saida]"></td>
+        </tr>
+    </table>
+
+    <div class="section-title">Outros Documentos</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="titulo_numero">Número do Título de Eleitor:</label>
+            <input type="text" id="titulo_numero" name="titulo_numero" placeholder="Número do Título">
+        </div>
+        <div class="form-group">
+            <label for="titulo_zona">Zona Eleitoral:</label>
+            <input type="text" id="titulo_zona" name="titulo_zona" placeholder="Zona Eleitoral">
+        </div>
+        <div class="form-group">
+            <label for="titulo_secao">Seção Eleitoral:</label>
+            <input type="text" id="titulo_secao" name="titulo_secao" placeholder="Seção Eleitoral">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="reservista_numero">Número da Carteira de Reservista:</label>
+            <input type="text" id="reservista_numero" name="reservista_numero" placeholder="Número da Reservista">
+        </div>
+        <div class="form-group">
+            <label for="pis">Número do PIS:</label>
+            <input type="text" id="pis" name="pis" placeholder="Número do PIS">
+        </div>
+        <div class="form-group">
+            <label for="cnh">CNH:</label>
+            <input type="text" id="cnh" name="cnh" placeholder="Número da CNH">
+        </div>
+    </div>
+
+    <div class="section-title">Endereço e Contato</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="cep" class="required">CEP:</label>
+            <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required>
+        </div>
+        <div class="form-group">
+            <label for="endereco_rua" class="required">Rua:</label>
+            <input type="text" id="endereco_rua" name="endereco_rua" placeholder="Nome da Rua" required>
+        </div>
+        <div class="form-group">
+            <label for="endereco_numero">Número:</label>
+            <input type="text" id="endereco_numero" name="endereco_numero" placeholder="Número da Residência">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="bairro" class="required">Bairro:</label>
+            <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
+        </div>
+        <div class="form-group">
+            <label for="cidade" class="required">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
+        </div>
+        <div class="form-group">
+            <label for="uf" class="required">UF:</label>
+            <select id="uf" name="uf" required>
+                <option value="">Selecione</option>
+                <option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option>
+                <option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option>
+                <option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option>
+                <option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option>
+                <option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option>
+                <option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option>
+                <option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option>
+                <option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option>
+                <option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="complemento">Complemento:</label>
+            <input type="text" id="complemento" name="complemento" placeholder="Complemento">
+        </div>
+        <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(DD) 99999-9999">
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="email@exemplo.com">
+        </div>
+    </div>
+
+    <div class="section-title">Benefícios</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="vale_transporte">Vale-Transporte:</label>
+            <select id="vale_transporte" name="vale_transporte">
+                <option value="">Selecione</option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="linha_transporte">Linha Utilizada:</label>
+            <input type="text" id="linha_transporte" name="linha_transporte" placeholder="Nome da Linha">
+        </div>
+        <div class="form-group">
+            <label for="quantidade_passes">Quantidade de Passes Diários:</label>
+            <input type="number" id="quantidade_passes" name="quantidade_passes" placeholder="Ex: 2" min="0">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="valor_passe">Valor do Passe (R$):</label>
+            <input type="number" id="valor_passe" name="valor_passe" placeholder="Ex: 5,00" step="0.01" min="0">
+        </div>
+        <div class="form-group checkbox-group">
+            <label for="desconto_vt">Autorizo desconto de até 6%:</label>
+            <input type="checkbox" id="desconto_vt" name="desconto_vt">
+        </div>
+        <div class="form-group checkbox-group">
+            <label for="fgts">Opção pelo FGTS:</label>
+            <input type="checkbox" id="fgts" name="fgts">
+        </div>
+    </div>
+
+    <div class="section-title">Informações Adicionais</div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="cidade_nascimento">Cidade de Nascimento:</label>
+            <input type="text" id="cidade_nascimento" name="cidade_nascimento" placeholder="Cidade de Nascimento">
+        </div>
+        <div class="form-group">
+            <label for="escolaridade">Escolaridade:</label>
+            <select id="escolaridade" name="escolaridade">
+                <option value="">Selecione</option>
+                <option value="Fundamental Incompleto">Fundamental Incompleto</option>
+                <option value="Fundamental Completo">Fundamental Completo</option>
+                <option value="Médio Incompleto">Médio Incompleto</option>
+                <option value="Médio Completo">Médio Completo</option>
+                <option value="Superior Incompleto">Superior Incompleto</option>
+                <option value="Superior Completo">Superior Completo</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="section-title">Termo de Consentimento LGPD</div>
+    <div class="form-row">
+        <div class="form-group checkbox-group">
+            <label for="lgpd" class="required">Autorizo o uso de meus dados conforme a LGPD:</label>
+            <input type="checkbox" id="lgpd" name="lgpd" required>
+        </div>
+    </div>
+
+    <button type="button" id="enviar">Enviar via WhatsApp</button>
+    <p style="margin-top: 20px; color: #555;">
+        *Os anexos devem ser enviados separadamente pelo WhatsApp: 
+        Exame Admissional, CTPS, RG, CPF, Comprovante de Endereço, Certidão de Nascimento de dependentes menores de 7 anos.
+    </p>
+    <p style="margin-top: 10px; color: #ff0000;"> 
+        *Os outros documentos não precisam de anexo, apenas preencha no formulário acima.
+    </p>
+</form>
+
+<script>
+    // Funções de validação e formatação
+
+    // Função para formatar CPF
+    function formatarCPF(cpf) {
+        cpf = cpf.replace(/\D/g, "");
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        return cpf;
+    }
+
+    // Função para validar CPF
+    function validarCPF(cpf) {
+        cpf = cpf.replace(/[^\d]+/g,'');
+        if(cpf.length !== 11) return false;
+        if (/^(\d)\1+$/.test(cpf)) return false;
+
+        let soma = 0;
+        for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
+        let resto = 11 - (soma % 11);
+        if (resto === 10 || resto === 11) resto = 0;
+        if (resto !== parseInt(cpf.charAt(9))) return false;
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
+        resto = 11 - (soma % 11);
+        if (resto === 10 || resto === 11) resto = 0;
+        return resto === parseInt(cpf.charAt(10));
+    }
+
+    // Event listener para formatar e validar CPF
+    document.getElementById('cpf').addEventListener('blur', function() {
+        let cpf = this.value;
+        cpf = cpf.replace(/\D/g, '');
+        this.value = formatarCPF(cpf);
+        if (cpf.length > 0 && !validarCPF(cpf)) {
+            document.getElementById('cpf-error').innerText = 'CPF inválido.';
+        } else {
+            document.getElementById('cpf-error').innerText = '';
+        }
+    });
+
+    document.getElementById('enviar').addEventListener('click', function() {
+        // Verificar se há mensagens de erro
+        const cpfErro = document.getElementById('cpf-error').innerText;
+        if (cpfErro) {
+            alert('Por favor, corrija os erros no formulário antes de enviar.');
+            return;
+        }
+
+        // Verificar campos obrigatórios
+        const requiredFields = [
+            'empresa_nome', 'empresa_cnpj', 'nome', 'cpf', 'data_nascimento', 
+            'ctps_numero', 'data_admissao', 'tipo_contrato', 'cargo', 'salario', 
+            'cep', 'endereco_rua', 'bairro', 'cidade', 'uf', 'lgpd'
+        ];
+        let missingFields = [];
+        requiredFields.forEach(id => {
+            const field = document.getElementById(id);
+            if (field.type === 'checkbox') {
+                if (!field.checked) missingFields.push(field.labels[0].textContent);
+            } else if (!field.value.trim()) {
+                missingFields.push(field.labels[0].textContent);
+            }
+        });
+
+        if (missingFields.length > 0) {
+            alert('Por favor, preencha os campos obrigatórios:\n' + missingFields.join('\n'));
+            return;
+        }
+
+        // Coletar dados do formulário
+        const form = document.getElementById('formulario');
+        const formData = new FormData(form);
+
+        // Montar mensagem
+        let mensagem = '*DADOS DO EMPREGADO:*\n';
+
+        function obterValorCampo(label, value) {
+            return value ? `${label}: ${value}\n` : `${label}: Não preenchido\n`;
+        }
+
+        mensagem += '\n*Dados da Empresa*\n';
+        mensagem += obterValorCampo('Razão Social', formData.get('empresa_nome'));
+        mensagem += obterValorCampo('CNPJ', formData.get('empresa_cnpj'));
+        mensagem += obterValorCampo('Endereço Completo', formData.get('empresa_endereco'));
+
+        mensagem += '\n*Dados Pessoais*\n';
+        mensagem += obterValorCampo('Nome', formData.get('nome'));
+        mensagem += obterValorCampo('CPF', formData.get('cpf'));
+        mensagem += obterValorCampo('RG', formData.get('rg'));
+        mensagem += obterValorCampo('Data de Nascimento', formData.get('data_nascimento'));
+        mensagem += obterValorCampo('Estado Civil', formData.get('estado_civil'));
+        mensagem += obterValorCampo('Filhos Menores', formData.get('filhos_menores'));
+
+        mensagem += '\n*Carteira de Trabalho (CTPS)*\n';
+        mensagem += obterValorCampo('Número da CTPS', formData.get('ctps_numero'));
+        mensagem += obterValorCampo('Série', formData.get('ctps_serie'));
+        mensagem += obterValorCampo('UF da CTPS', formData.get('ctps_uf'));
+
+        mensagem += '\n*Dados Contratuais*\n';
+        mensagem += obterValorCampo('Data de Admissão', formData.get('data_admissao'));
+        mensagem += obterValorCampo('Tipo de Contrato', formData.get('tipo_contrato'));
+        mensagem += obterValorCampo('Cargo/Função', formData.get('cargo'));
+        mensagem += obterValorCampo('Salário', formData.get('salario') ? `R$ ${parseFloat(formData.get('salario')).toFixed(2).replace('.', ',')}` : '');
+        mensagem += obterValorCampo('Data de Término', formData.get('data_termino'));
+        mensagem += obterValorCampo('Dias de Prorrogação', formData.get('prorrogacao'));
+
+        mensagem += '\n*Horário Semanal*\n';
+        const diasSemana = ['segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo'];
+        diasSemana.forEach(dia => {
+            const entrada = formData.get(`horario[${dia}][entrada]`);
+            const inicioIntervalo = formData.get(`horario[${dia}][inicio_intervalo]`);
+            const fimIntervalo = formData.get(`horario[${dia}][fim_intervalo]`);
+            const saida = formData.get(`horario[${dia}][saida]`);
+            const diaFormatado = dia.charAt(0).toUpperCase() + dia.slice(1) + '-feira';
+            if (dia === 'sabado') diaFormatado = 'Sábado';
+            if (dia === 'domingo') diaFormatado = 'Domingo';
+            if (entrada || saida) {
+                mensagem += `${diaFormatado}: ${entrada || 'Não informado'} - ${saida || 'Não informado'}`;
+                if (inicioIntervalo && fimIntervalo) mensagem += ` (Intervalo: ${inicioIntervalo} - ${fimIntervalo})`;
+                mensagem += '\n';
+            } else {
+                mensagem += `${diaFormatado}: Não preenchido\n`;
+            }
+        });
+
+        mensagem += '\n*Outros Documentos*\n';
+        mensagem += obterValorCampo('Número do Título', formData.get('titulo_numero'));
+        mensagem += obterValorCampo('Zona', formData.get('titulo_zona'));
+        mensagem += obterValorCampo('Seção', formData.get('titulo_secao'));
+        mensagem += obterValorCampo('Número da Reservista', formData.get('reservista_numero'));
+        mensagem += obterValorCampo('Número do PIS', formData.get('pis'));
+        mensagem += obterValorCampo('CNH', formData.get('cnh'));
+
+        mensagem += '\n*Endereço e Contato*\n';
+        mensagem += obterValorCampo('CEP', formData.get('cep'));
+        mensagem += obterValorCampo('Rua', formData.get('endereco_rua'));
+        mensagem += obterValorCampo('Número', formData.get('endereco_numero'));
+        mensagem += obterValorCampo('Bairro', formData.get('bairro'));
+        mensagem += obterValorCampo('Cidade', formData.get('cidade'));
+        mensagem += obterValorCampo('UF', formData.get('uf'));
+        mensagem += obterValorCampo('Complemento', formData.get('complemento'));
+        mensagem += obterValorCampo('Telefone', formData.get('telefone'));
+        mensagem += obterValorCampo('E-mail', formData.get('email'));
+
+        mensagem += '\n*Benefícios*\n';
+        mensagem += obterValorCampo('Vale-Transporte', formData.get('vale_transporte'));
+        if (formData.get('vale_transporte') === 'Sim') {
+            mensagem += obterValorCampo('Linha Utilizada', formData.get('linha_transporte'));
+            mensagem += obterValorCampo('Quantidade de Passes', formData.get('quantidade_passes'));
+            mensagem += obterValorCampo('Valor do Passe', formData.get('valor_passe') ? `R$ ${parseFloat(formData.get('valor_passe')).toFixed(2).replace('.', ',')}` : '');
+            mensagem += obterValorCampo('Desconto Autorizado', formData.get('desconto_vt') ? 'Sim' : 'Não');
+        }
+        mensagem += obterValorCampo('Opção pelo FGTS', formData.get('fgts') ? 'Sim' : 'Não');
+
+        mensagem += '\n*Informações Adicionais*\n';
+        mensagem += obterValorCampo('Cidade de Nascimento', formData.get('cidade_nascimento'));
+        mensagem += obterValorCampo('Escolaridade', formData.get('escolaridade'));
+
+        mensagem += '\n*Termo de Consentimento LGPD*\n';
+        mensagem += obterValorCampo('Autorizo o uso de dados', formData.get('lgpd') ? 'Sim' : 'Não');
+
+        mensagem += '\n*Os anexos devem ser enviados separadamente pelo WhatsApp.*\n';
+
+        const numeroWhatsApp = '55996636737';
+        const url = `https://wa.me/${numeroWhatsApp}/?text=${encodeURIComponent(mensagem)}`;
+        window.open(url, '_blank');
+    });
+</script>
+
+</body>
+</html>
