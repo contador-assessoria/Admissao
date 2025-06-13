@@ -153,7 +153,7 @@ const dadosExemplo = {
     "Terca-feira": {"Entrada":"08:00","Intervalo":"12:00","Fim_Intervalo":"14:00","Saida":"18:00"},
     "Quarta-feira": {"Entrada":"08:00","Intervalo":"12:00","Fim_Intervalo":"14:00","Saida":"18:00"},
     "Quinta-feira": {"Entrada":"08:00","Intervalo":"12:00","Fim_Intervalo":"14:00","Saida":"18:00"},
-    "Sexta-feira": {"Entrada":"08:00","Intervalo":"12:00","Fim_Intervalo":"14:00","Saida":"18:00"},
+  document.getElementById('desconto_vt').checked = d.Beneficios["Autorizacao_Desconto_6%"];
     "Sabado": {"Entrada":"00:00","Intervalo":"00:00","Fim_Intervalo":"00:00","Saida":"00:00"},
     "Domingo": {"Entrada":"00:00","Intervalo":"00:00","Fim_Intervalo":"00:00","Saida":"00:00"}
   }
