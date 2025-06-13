@@ -8,6 +8,8 @@ Após o envio, os dados são enviados para um script do Google Apps Script defin
 1. Clone o repositório ou faça o download dos arquivos.
 2. Abra `index.html` em um navegador moderno.
 3. Preencha os campos obrigatórios e opcionais.
-4. Clique em **Enviar Formulário** para enviar as informações.
+4. Utilize o pequeno checkbox no canto superior esquerdo caso deseje preencher o formulário com dados de exemplo.
+5. É possível replicar o horário da segunda-feira para os demais dias com o botão **Replicar horários da segunda**.
+6. Clique em **Enviar Formulário** para enviar as informações.
 
-O código CSS está em `style.css` e a lógica JavaScript em `script.js`.
+O código CSS está em `style.css` e a lógica JavaScript em `script.js`. O script também utiliza APIs públicas para preencher dados a partir do CNPJ e CEP informados.
