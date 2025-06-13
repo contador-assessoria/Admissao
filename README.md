@@ -1,3 +1,4 @@
+//<<<<<<< 5potcy-codex/criar-formulário-de-admissão-com-validação-e-envio-via-whats
 # Admissao
 
 Esta página HTML coleta dados de admissão de empregados. Abra `index.html` em um navegador para preencher o formulário.
@@ -13,3 +14,6 @@ Após o envio, os dados são enviados para um script do Google Apps Script defin
 6. Clique em **Enviar Formulário** para enviar as informações.
 
 O código CSS está em `style.css` e a lógica JavaScript em `script.js`. O script também utiliza APIs públicas para preencher dados a partir do CNPJ e CEP informados.
+=======
+//>>>>>>> 
+main
