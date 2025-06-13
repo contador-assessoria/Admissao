@@ -33,6 +33,7 @@ async function enviarFormulario() {
     alert('❌ Erro de conexão. Verifique sua internet e tente novamente.');
   }
 }
+// <<<<<<< nai3ty-codex/criar-formulário-de-admissão-com-validação-e-envio-via-whats
 
 // Busca dados de empresa pelo CNPJ usando API publica
 async function buscarCNPJ() {
@@ -226,3 +227,6 @@ function togglePrefill() {
 }
 
 document.getElementById('prefillToggle').addEventListener('change', togglePrefill);
+=======
+// >>>>>>>
+main
